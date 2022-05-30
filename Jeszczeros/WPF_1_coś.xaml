@@ -1,0 +1,20 @@
+﻿<Window x:Class="Jeszczeros.WPF_1_coś"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Jeszczeros"
+        mc:Ignorable="d"
+        Title="WPF_1_coś" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="gridDocuments" HorizontalAlignment="Left" Height="176" Margin="0,207,0,0" VerticalAlignment="Top" Width="792"/>
+        <Label Content="Numer Dokumentu" HorizontalAlignment="Left" Height="26" Margin="12,43,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
+        <TextBox x:Name="NrDok"  HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168" Margin="162,43,0,0" FontSize="14" BorderThickness="0.5"/>
+        <Label Content="Kontrahent" HorizontalAlignment="Left" Height="26" Margin="12,12,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
+        <TextBox x:Name="CstText" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168" Margin="162,12,0,0" FontSize="14" BorderThickness="0.5"/>
+        <Label Content="Data dokumentu" HorizontalAlignment="Left" Height="26" Margin="12,74,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
+        <DatePicker x:Name="DataDok" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="162,74,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5"/>
+        <Button x:Name="Addbtn" Content="Dodaj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="255,105,0,0" Click="Addbtn_click"/>
+        <Button x:Name="Loadbtn" Content="Załaduj tabele" HorizontalAlignment="Left" VerticalAlignment="Top" Width="172" Margin="12,182,0,0" Click="Loadbtn_click"/>
+    </Grid>
+</Window>

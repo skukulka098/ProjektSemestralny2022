@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WorkflowModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS\BAZADOK.MDF.dbo.Customers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Cst_ID" />
+            <PropertyRef Name="Cst_InsertDate" />
+            <PropertyRef Name="Cst_InsertedBy" />
+          </Key>
+          <Property Name="Cst_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cst_Name" Type="varchar(max)" />
+          <Property Name="Cst_TaxID" Type="varchar" MaxLength="50" />
+          <Property Name="Cst_StreetName" Type="varchar" MaxLength="50" />
+          <Property Name="Cst_StreetNumber" Type="int" />
+          <Property Name="Cst_InsertDate" Type="datetime" Nullable="false" />
+          <Property Name="Cst_InsertedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Documents">
+          <Key>
+            <PropertyRef Name="Doc_ID" />
+          </Key>
+          <Property Name="Doc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Doc_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Doc_CstID" Type="int" />
+          <Property Name="Doc_NetValue" Type="money" />
+          <Property Name="Doc_VatValue" Type="money" />
+          <Property Name="Doc_GrossValue" Type="money" />
+          <Property Name="Doc_DocumentDate" Type="datetime" />
+          <Property Name="Doc_SellDate" Type="datetime" />
+          <Property Name="Doc_PaymentDate" Type="datetime" />
+          <Property Name="Doc_InsertedBy" Type="int" />
+          <Property Name="Doc_InsertDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS\BAZADOK.MDF.dbo.ProcessStates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProcessStates">
+          <Key>
+            <PropertyRef Name="PSS_ID" />
+            <PropertyRef Name="PSS_Name" />
+            <PropertyRef Name="PSS_InsertDate" />
+            <PropertyRef Name="PSS_InsertedBy" />
+          </Key>
+          <Property Name="PSS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PSS_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PSS_InsertDate" Type="datetime" Nullable="false" />
+          <Property Name="PSS_InsertedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS\BAZADOK.MDF.dbo.Tasks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="Tsk_ID" />
+            <PropertyRef Name="Tsk_DocID" />
+            <PropertyRef Name="Tsk_PSSID" />
+            <PropertyRef Name="Tsk_InsertDate" />
+            <PropertyRef Name="Tsk_UpdateDate" />
+            <PropertyRef Name="Tsk_InsertedBy" />
+            <PropertyRef Name="Tsk_Updatedby" />
+          </Key>
+          <Property Name="Tsk_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tsk_DocID" Type="int" Nullable="false" />
+          <Property Name="Tsk_PSSID" Type="int" Nullable="false" />
+          <Property Name="Tsk_InsertDate" Type="datetime" Nullable="false" />
+          <Property Name="Tsk_UpdateDate" Type="datetime" Nullable="false" />
+          <Property Name="Tsk_InsertedBy" Type="int" Nullable="false" />
+          <Property Name="Tsk_Updatedby" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS\BAZADOK.MDF.dbo.Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Usr_ID" />
+            <PropertyRef Name="Usr_Name" />
+            <PropertyRef Name="Usr_Surname" />
+            <PropertyRef Name="Usr_Login" />
+            <PropertyRef Name="Usr_PWD" />
+            <PropertyRef Name="Usr_InsertDate" />
+            <PropertyRef Name="Usr_InsertedBy" />
+          </Key>
+          <Property Name="Usr_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usr_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Usr_Surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Usr_Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Usr_PWD" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Usr_Email" Type="varchar" MaxLength="50" />
+          <Property Name="Usr_InsertDate" Type="datetime" Nullable="false" />
+          <Property Name="Usr_InsertedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="WorkflowModelStoreContainer">
+          <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Customers].[Cst_ID] AS [Cst_ID], 
+    [Customers].[Cst_Name] AS [Cst_Name], 
+    [Customers].[Cst_TaxID] AS [Cst_TaxID], 
+    [Customers].[Cst_StreetName] AS [Cst_StreetName], 
+    [Customers].[Cst_StreetNumber] AS [Cst_StreetNumber], 
+    [Customers].[Cst_InsertDate] AS [Cst_InsertDate], 
+    [Customers].[Cst_InsertedBy] AS [Cst_InsertedBy]
+    FROM [dbo].[Customers] AS [Customers]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProcessStates" EntityType="Self.ProcessStates" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProcessStates].[PSS_ID] AS [PSS_ID], 
+    [ProcessStates].[PSS_Name] AS [PSS_Name], 
+    [ProcessStates].[PSS_InsertDate] AS [PSS_InsertDate], 
+    [ProcessStates].[PSS_InsertedBy] AS [PSS_InsertedBy]
+    FROM [dbo].[ProcessStates] AS [ProcessStates]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Tasks].[Tsk_ID] AS [Tsk_ID], 
+    [Tasks].[Tsk_DocID] AS [Tsk_DocID], 
+    [Tasks].[Tsk_PSSID] AS [Tsk_PSSID], 
+    [Tasks].[Tsk_InsertDate] AS [Tsk_InsertDate], 
+    [Tasks].[Tsk_UpdateDate] AS [Tsk_UpdateDate], 
+    [Tasks].[Tsk_InsertedBy] AS [Tsk_InsertedBy], 
+    [Tasks].[Tsk_Updatedby] AS [Tsk_Updatedby]
+    FROM [dbo].[Tasks] AS [Tasks]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Users].[Usr_ID] AS [Usr_ID], 
+    [Users].[Usr_Name] AS [Usr_Name], 
+    [Users].[Usr_Surname] AS [Usr_Surname], 
+    [Users].[Usr_Login] AS [Usr_Login], 
+    [Users].[Usr_PWD] AS [Usr_PWD], 
+    [Users].[Usr_Email] AS [Usr_Email], 
+    [Users].[Usr_InsertDate] AS [Usr_InsertDate], 
+    [Users].[Usr_InsertedBy] AS [Usr_InsertedBy]
+    FROM [dbo].[Users] AS [Users]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WorkflowModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Cst_ID" />
+            <PropertyRef Name="Cst_InsertDate" />
+            <PropertyRef Name="Cst_InsertedBy" />
+          </Key>
+          <Property Name="Cst_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cst_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Cst_TaxID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cst_StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cst_StreetNumber" Type="Int32" />
+          <Property Name="Cst_InsertDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cst_InsertedBy" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Doc_ID" />
+          </Key>
+          <Property Name="Doc_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Doc_Name" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Doc_CstID" Type="Int32" />
+          <Property Name="Doc_NetValue" Precision="19" Scale="4" Type="Decimal" />
+          <Property Name="Doc_VatValue" Precision="19" Scale="4" Type="Decimal" />
+          <Property Name="Doc_GrossValue" Precision="19" Scale="4" Type="Decimal" />
+          <Property Name="Doc_DocumentDate" Precision="3" Type="DateTime" />
+          <Property Name="Doc_SellDate" Precision="3" Type="DateTime" />
+          <Property Name="Doc_PaymentDate" Precision="3" Type="DateTime" />
+          <Property Name="Doc_InsertedBy" Type="Int32" />
+          <Property Name="Doc_InsertDate" Precision="3" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="ProcessState">
+          <Key>
+            <PropertyRef Name="PSS_ID" />
+            <PropertyRef Name="PSS_Name" />
+            <PropertyRef Name="PSS_InsertDate" />
+            <PropertyRef Name="PSS_InsertedBy" />
+          </Key>
+          <Property Name="PSS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PSS_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PSS_InsertDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PSS_InsertedBy" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Tsk_ID" />
+            <PropertyRef Name="Tsk_DocID" />
+            <PropertyRef Name="Tsk_PSSID" />
+            <PropertyRef Name="Tsk_InsertDate" />
+            <PropertyRef Name="Tsk_UpdateDate" />
+            <PropertyRef Name="Tsk_InsertedBy" />
+            <PropertyRef Name="Tsk_Updatedby" />
+          </Key>
+          <Property Name="Tsk_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tsk_DocID" Type="Int32" Nullable="false" />
+          <Property Name="Tsk_PSSID" Type="Int32" Nullable="false" />
+          <Property Name="Tsk_InsertDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Tsk_UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Tsk_InsertedBy" Type="Int32" Nullable="false" />
+          <Property Name="Tsk_Updatedby" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Usr_ID" />
+            <PropertyRef Name="Usr_Name" />
+            <PropertyRef Name="Usr_Surname" />
+            <PropertyRef Name="Usr_Login" />
+            <PropertyRef Name="Usr_PWD" />
+            <PropertyRef Name="Usr_InsertDate" />
+            <PropertyRef Name="Usr_InsertedBy" />
+          </Key>
+          <Property Name="Usr_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usr_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Usr_Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Usr_Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Usr_PWD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Usr_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usr_InsertDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usr_InsertedBy" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="WorkflowEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Documents" EntityType="Self.Document" />
+          <EntitySet Name="ProcessStates" EntityType="Self.ProcessState" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WorkflowModelStoreContainer" CdmEntityContainer="WorkflowEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="WorkflowModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Cst_ID" ColumnName="Cst_ID" />
+                <ScalarProperty Name="Cst_Name" ColumnName="Cst_Name" />
+                <ScalarProperty Name="Cst_TaxID" ColumnName="Cst_TaxID" />
+                <ScalarProperty Name="Cst_StreetName" ColumnName="Cst_StreetName" />
+                <ScalarProperty Name="Cst_StreetNumber" ColumnName="Cst_StreetNumber" />
+                <ScalarProperty Name="Cst_InsertDate" ColumnName="Cst_InsertDate" />
+                <ScalarProperty Name="Cst_InsertedBy" ColumnName="Cst_InsertedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="WorkflowModel.Document">
+              <MappingFragment StoreEntitySet="Documents">
+                <ScalarProperty Name="Doc_ID" ColumnName="Doc_ID" />
+                <ScalarProperty Name="Doc_Name" ColumnName="Doc_Name" />
+                <ScalarProperty Name="Doc_CstID" ColumnName="Doc_CstID" />
+                <ScalarProperty Name="Doc_NetValue" ColumnName="Doc_NetValue" />
+                <ScalarProperty Name="Doc_VatValue" ColumnName="Doc_VatValue" />
+                <ScalarProperty Name="Doc_GrossValue" ColumnName="Doc_GrossValue" />
+                <ScalarProperty Name="Doc_DocumentDate" ColumnName="Doc_DocumentDate" />
+                <ScalarProperty Name="Doc_SellDate" ColumnName="Doc_SellDate" />
+                <ScalarProperty Name="Doc_PaymentDate" ColumnName="Doc_PaymentDate" />
+                <ScalarProperty Name="Doc_InsertedBy" ColumnName="Doc_InsertedBy" />
+                <ScalarProperty Name="Doc_InsertDate" ColumnName="Doc_InsertDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessStates">
+            <EntityTypeMapping TypeName="WorkflowModel.ProcessState">
+              <MappingFragment StoreEntitySet="ProcessStates">
+                <ScalarProperty Name="PSS_ID" ColumnName="PSS_ID" />
+                <ScalarProperty Name="PSS_Name" ColumnName="PSS_Name" />
+                <ScalarProperty Name="PSS_InsertDate" ColumnName="PSS_InsertDate" />
+                <ScalarProperty Name="PSS_InsertedBy" ColumnName="PSS_InsertedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="WorkflowModel.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="Tsk_ID" ColumnName="Tsk_ID" />
+                <ScalarProperty Name="Tsk_DocID" ColumnName="Tsk_DocID" />
+                <ScalarProperty Name="Tsk_PSSID" ColumnName="Tsk_PSSID" />
+                <ScalarProperty Name="Tsk_InsertDate" ColumnName="Tsk_InsertDate" />
+                <ScalarProperty Name="Tsk_UpdateDate" ColumnName="Tsk_UpdateDate" />
+                <ScalarProperty Name="Tsk_InsertedBy" ColumnName="Tsk_InsertedBy" />
+                <ScalarProperty Name="Tsk_Updatedby" ColumnName="Tsk_Updatedby" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WorkflowModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Usr_ID" ColumnName="Usr_ID" />
+                <ScalarProperty Name="Usr_Name" ColumnName="Usr_Name" />
+                <ScalarProperty Name="Usr_Surname" ColumnName="Usr_Surname" />
+                <ScalarProperty Name="Usr_Login" ColumnName="Usr_Login" />
+                <ScalarProperty Name="Usr_PWD" ColumnName="Usr_PWD" />
+                <ScalarProperty Name="Usr_Email" ColumnName="Usr_Email" />
+                <ScalarProperty Name="Usr_InsertDate" ColumnName="Usr_InsertDate" />
+                <ScalarProperty Name="Usr_InsertedBy" ColumnName="Usr_InsertedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
