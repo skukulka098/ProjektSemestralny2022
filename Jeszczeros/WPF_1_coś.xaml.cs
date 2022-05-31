@@ -14,9 +14,7 @@ using System.Windows.Shapes;
 
 namespace Jeszczeros
 {
-    /// <summary>
-    /// Logika interakcji dla klasy WPF_1_coś.xaml
-    /// </summary>
+   
     public partial class WPF_1_coś : Window
     {
         public WPF_1_coś()
@@ -49,12 +47,12 @@ namespace Jeszczeros
                 Doc_NetValue = 32,
                 Doc_GrossValue=53,
                 Doc_VatValue=21,
-                Doc_InsertDate= DateTime.Now,
-                Doc_SellDate= DateTime.Now,
-                Doc_PaymentDate= DateTime.Now,
+                Doc_InsertDate= Convert.ToDateTime(DataDok),
+                Doc_SellDate= Convert.ToDateTime(DataSprzed),
+                Doc_PaymentDate= Convert.ToDateTime(DataPlat),
                 Doc_InsertedBy=1,
                 Doc_CstID = Convert.ToInt32(CstText.Text),
-                Doc_DocumentDate = DateTime.Now
+                Doc_DocumentDate = Convert.ToDateTime(DataDok)
             };
 
             db.Documents.Add(documentObject);
