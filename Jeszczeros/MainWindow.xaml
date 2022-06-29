@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Jeszczeros"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="236.5" Width="366.5"
+        MouseDown="Window_MouseDown"
+        KeyDown="Window_KeyDown">
+    <Grid HorizontalAlignment="Left" Height="205" VerticalAlignment="Top" Width="358" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="-0.213"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Label Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="61,31,0,0" Height="37" Width="47"/>
+        <Label Content="Hasło" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="61,75,0,0" Width="47" Height="37"/>
+        <TextBox x:Name="Login" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" Margin="108,31,0,0"/>
+        <PasswordBox x:Name="txt_pass" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="108,75,0,0" Width="149" Height="37"/>
+        <Button Click="Zaloguj_click" Content="Zaloguj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Margin="120,117,0,0" Height="28"/>
     </Grid>
 </Window>
