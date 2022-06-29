@@ -34,11 +34,9 @@ namespace Jeszczeros
             }
         }
 
-        private void Zaloguj_click(object sender, RoutedEventArgs e)
+        private void UserCheck()
         {
             WorkflowEntities db = new WorkflowEntities();
-
-
 
             var querry1 = from u in db.Users
                           where u.Usr_Login == Login.Text && u.Usr_PWD == txt_pass.Password
@@ -47,12 +45,21 @@ namespace Jeszczeros
             if (querry1.Count() == 1)
             {
                 MessageBox.Show("Zalogowano");
+                WPF_1_coś objokno = new WPF_1_coś();
+                this.Visibility = Visibility.Hidden;
+                objokno.Show();
             }
             else
             {
                 MessageBox.Show("Nie prawidłowy login lub hasło");
             }
+            
+        }
 
+        private void Zaloguj_click(object sender, RoutedEventArgs e)
+        {
+
+            UserCheck();
 
 
         }
@@ -62,27 +69,8 @@ namespace Jeszczeros
             if (e.Key == Key.Enter)
             {
 
-                WorkflowEntities db = new WorkflowEntities();
-
-
-
-                var querry1 = from u in db.Users
-                              where u.Usr_Login == Login.Text && u.Usr_PWD == txt_pass.Password
-                              select u;
-
-
-
-                if (querry1.Count() == 1)
-                {
-                    MessageBox.Show("Zalogowano");
-
-                }
-                else
-                {
-                    MessageBox.Show("Nie prawidłowy login lub hasło");
-                }
-
-
+                UserCheck();
+               
 
             }
         }
