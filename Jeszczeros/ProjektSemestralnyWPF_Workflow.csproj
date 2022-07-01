@@ -95,7 +95,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddDocumentPage.xaml.cs">
+    <Compile Include="Okna\AddDocumentPage.xaml.cs">
       <DependentUpon>AddDocumentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Customer.cs">
@@ -128,7 +128,7 @@
     <Compile Include="Okna\LoggedUserWindow.xaml.cs">
       <DependentUpon>LoggedUserWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddDocumentPage.xaml">
+    <Page Include="Okna\AddDocumentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
