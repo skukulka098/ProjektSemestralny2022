@@ -12,29 +12,35 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace Jeszczeros
 {
    
-    public partial class WPF_1_coś : Window
+    public partial class LoggedUserWindow : Window
     {
-        public WPF_1_coś()
+        public LoggedUserWindow() 
         {
             InitializeComponent();
-
             WorkflowEntities db = new WorkflowEntities();
+
+                              
             var docs = from d in db.Documents
-                       select d;
+                       from t in db.Tasks
+                       where d.Doc_ID == t.Tsk_DocID
+                       select new { 
+            t.Tsk_DocID,d.Doc_ID,d.Doc_Name,d.Doc_CstID,d.Doc_DocumentDate
+            };
+           
 
-            foreach (var item in docs)
-            {
-
-                Console.WriteLine(item.Doc_ID);
-                Console.WriteLine(item.Doc_Name);
-                Console.WriteLine(item.Doc_CstID);
-                Console.WriteLine(item.Doc_DocumentDate);
-            }
             gridDocuments.ItemsSource = docs.ToList();
 
+        }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
         private void Addbtn_click(object sender, RoutedEventArgs e)
         {
@@ -47,12 +53,12 @@ namespace Jeszczeros
                 Doc_NetValue = 32,
                 Doc_GrossValue=53,
                 Doc_VatValue=21,
-                Doc_InsertDate= Convert.ToDateTime(DataDok),
-                Doc_SellDate= Convert.ToDateTime(DataSprzed),
-                Doc_PaymentDate= Convert.ToDateTime(DataPlat),
+                Doc_SellDate= DataSprzed.SelectedDate,
+                Doc_PaymentDate= DataPlat.SelectedDate,
                 Doc_InsertedBy=1,
+                Doc_InsertDate= DateTime.Now,
                 Doc_CstID = Convert.ToInt32(CstText.Text),
-                Doc_DocumentDate = Convert.ToDateTime(DataDok)
+                Doc_DocumentDate = (DateTime)DataDok.SelectedDate
             };
 
             db.Documents.Add(documentObject);
@@ -63,7 +69,24 @@ namespace Jeszczeros
         {
             WorkflowEntities db = new WorkflowEntities();
 
+            
             gridDocuments.ItemsSource = db.Documents.ToList();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            MessageBox.Show("Wylogowano");
+            Application.Current.Shutdown();
+        }
+
+        private void Close_button(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void gridDocuments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

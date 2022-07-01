@@ -5,11 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8fa937e190664e6798d2d4721c553086" Name="Diagram1">
-        <EntityTypeShape EntityType="WorkflowModel.Customer" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkflowModel.Document" PointX="3.25" PointY="2.75" Width="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkflowModel.ProcessState" Width="1.5" PointX="3.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkflowModel.Task" Width="1.5" PointX="0.5" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkflowModel.User" Width="1.5" PointX="5.375" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkflowModel.Customer" Width="1.625" PointX="2.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkflowModel.Document" PointX="6.25" PointY="3.375" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkflowModel.Task" Width="1.5" PointX="9.125" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkflowModel.User" Width="1.625" PointX="12.75" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="WorkflowModel.FK_Tasks_ToDocuments" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="WorkflowModel.FK_Tasks_ToUsers" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="WorkflowModel.FK_Documents_ToCustomers" ManuallyRouted="true" >
+          <ConnectorPoint PointX="4.375" PointY="4.0335273844401041" />
+          <ConnectorPoint PointX="5.63125" PointY="4.0335273844401041" />
+          <ConnectorPoint PointX="5.63125" PointY="4.515373958333333" />
+          <ConnectorPoint PointX="6.25" PointY="4.515373958333333" />
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

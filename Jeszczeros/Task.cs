@@ -16,10 +16,13 @@ namespace Jeszczeros
     {
         public int Tsk_ID { get; set; }
         public int Tsk_DocID { get; set; }
-        public int Tsk_PSSID { get; set; }
+        public int Tsk_UsrID { get; set; }
         public System.DateTime Tsk_InsertDate { get; set; }
         public System.DateTime Tsk_UpdateDate { get; set; }
         public int Tsk_InsertedBy { get; set; }
         public int Tsk_Updatedby { get; set; }
+    
+        public virtual Document Document { get; set; }
+        public virtual User User { get; set; }
     }
 }

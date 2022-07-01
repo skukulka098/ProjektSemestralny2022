@@ -14,6 +14,12 @@ namespace Jeszczeros
     
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.Tasks = new HashSet<Task>();
+        }
+    
         public int Usr_ID { get; set; }
         public string Usr_Name { get; set; }
         public string Usr_Surname { get; set; }
@@ -22,5 +28,9 @@ namespace Jeszczeros
         public string Usr_Email { get; set; }
         public System.DateTime Usr_InsertDate { get; set; }
         public int Usr_InsertedBy { get; set; }
+        public bool Usr_isAdmin { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }

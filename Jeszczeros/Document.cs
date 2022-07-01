@@ -14,16 +14,26 @@ namespace Jeszczeros
     
     public partial class Document
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Document()
+        {
+            this.Tasks = new HashSet<Task>();
+        }
+    
         public int Doc_ID { get; set; }
         public string Doc_Name { get; set; }
         public Nullable<int> Doc_CstID { get; set; }
         public Nullable<decimal> Doc_NetValue { get; set; }
         public Nullable<decimal> Doc_VatValue { get; set; }
         public Nullable<decimal> Doc_GrossValue { get; set; }
-        public Nullable<System.DateTime> Doc_DocumentDate { get; set; }
+        public System.DateTime Doc_DocumentDate { get; set; }
         public Nullable<System.DateTime> Doc_SellDate { get; set; }
         public Nullable<System.DateTime> Doc_PaymentDate { get; set; }
-        public Nullable<int> Doc_InsertedBy { get; set; }
-        public Nullable<System.DateTime> Doc_InsertDate { get; set; }
+        public int Doc_InsertedBy { get; set; }
+        public System.DateTime Doc_InsertDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Task> Tasks { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

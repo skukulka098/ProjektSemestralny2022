@@ -1,0 +1,108 @@
+﻿<Window x:Class="Jeszczeros.LoggedUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Jeszczeros" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="LoggedUserWindow" Height="438.125" Width="1136.5" 
+        Closed="Window_Closed"
+        AllowsTransparency="True" Background="Transparent"
+        WindowStyle="None" ResizeMode="NoResize"
+        MouseDown="Window_MouseDown">
+
+
+    <Grid Margin="0,0,0,10">
+        <Border CornerRadius="20" >
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#b6452f" Offset="0.0"/>
+                    <GradientStop Color="#c7ff57" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <DataGrid Foreground="#FFFBFBFB"
+                    Background="Transparent" 
+                  x:Name="gridDocuments"
+                  HorizontalAlignment="Left" 
+                  Width="Auto" 
+                  Height="Auto" 
+                  Margin="12,239,12,0" 
+                  VerticalAlignment="Top" 
+                  BorderThickness="0.6" 
+                  BorderBrush="White" 
+                  MinColumnWidth="50" 
+                  MaxColumnWidth="575" 
+                  CanUserResizeColumns="False" 
+                  CanUserResizeRows="False"  >
+           
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderThickness" Value="0.5"/>
+                    
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                   
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Style>
+            </DataGrid.CellStyle>
+            
+
+        </DataGrid>
+        <Label TextBlock.FontWeight="Bold" Content="Numer dokumentu" HorizontalAlignment="Left" Height="28" Margin="360,70,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
+        <TextBox x:Name="NrDok"  HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168" Margin="510,70,0,0" FontSize="14" BorderThickness="0.5"/>
+        <Label TextBlock.FontWeight="Bold" Content="Kontrahent" HorizontalAlignment="Left" Height="28" Margin="360,101,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
+        <TextBox x:Name="CstText" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168" Margin="510,101,0,0" FontSize="14" BorderThickness="0.5"/>
+        <Label TextBlock.FontWeight="Bold"  Content="Data dokumentu" HorizontalAlignment="Left" Height="28" Margin="360,132,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
+        <DatePicker x:Name="DataDok" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="510,132,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5" Background="White" />
+
+        <Label TextBlock.FontWeight="Bold"  Content="Data sprzedaży" HorizontalAlignment="Left" Height="28" Margin="360,162,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
+        <DatePicker x:Name="DataSprzed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="510,162,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5" Background="White" />
+        <Label TextBlock.FontWeight="Bold"  Content="Data płatności" Height="28" Margin="360,193,0,0" VerticalAlignment="Top" Width="145" FontSize="14" HorizontalAlignment="Left"/>
+        <DatePicker x:Name="DataPlat" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="510,193,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5" Background="White" />
+
+
+        <iconPacks:PackIconMaterial Kind="CloseBox" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White" Margin="1091,17,19,387" Height="24" Width="26" RenderTransformOrigin="0.269,-4.521"/>
+
+        <iconPacks:PackIconMaterial Kind="PlusBoxMultiple" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White" Margin="54,18,1037,376" Height="34" Width="45" RenderTransformOrigin="0.269,-4.521"/>
+        <iconPacks:PackIconMaterial Kind="Refresh" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White" Margin="132,19,959,375" Height="34" Width="45" RenderTransformOrigin="0.269,-4.521"/>
+
+        <Button Background="Transparent" BorderThickness="0" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Addbtn"  Width="34" Margin="60,17,0,0" Click="Addbtn_click" Height="36" RenderTransformOrigin="0.467,0.333" Opacity="0.75" FontWeight="Bold"  Foreground="Snow"/>
+
+        <Button Click="Close_button" Background="Transparent" BorderThickness="0"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="22" Margin="1093,17,0,0" Height="24"/>
+        <Label  HorizontalContentAlignment="Center" TextBlock.FontWeight="Bold" Content="Dodaj Dokument" HorizontalAlignment="Left" Height="25" Margin="27,53,0,0" VerticalAlignment="Top" Width="104" FontSize="10" Background="#00000000" Foreground="#FFFBFBFB"/>
+        <Button Background="Transparent" BorderThickness="0" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Loadbtn"  Width="36" Margin="136,18,0,0" Click="Loadbtn_click" Height="35" RenderTransformOrigin="0.467,0.333" Opacity="0.75" FontWeight="Bold"  Foreground="Snow"/>
+        <Label  HorizontalContentAlignment="Center" TextBlock.FontWeight="Bold" Content="Odśwież" HorizontalAlignment="Left" Height="25" Margin="103,53,0,0" VerticalAlignment="Top" Width="104" FontSize="10" Background="#00000000" Foreground="#FFFBFBFB"/>
+
+    </Grid>
+</Window>

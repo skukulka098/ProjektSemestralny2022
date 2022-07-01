@@ -5,8 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="WorkflowModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS\BAZADOK.MDF.dbo.Customers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="Cst_ID" />
@@ -29,39 +27,24 @@ warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS
           <Property Name="Doc_NetValue" Type="money" />
           <Property Name="Doc_VatValue" Type="money" />
           <Property Name="Doc_GrossValue" Type="money" />
-          <Property Name="Doc_DocumentDate" Type="datetime" />
-          <Property Name="Doc_SellDate" Type="datetime" />
-          <Property Name="Doc_PaymentDate" Type="datetime" />
-          <Property Name="Doc_InsertedBy" Type="int" />
-          <Property Name="Doc_InsertDate" Type="datetime" />
+          <Property Name="Doc_DocumentDate" Type="date" Nullable="false" />
+          <Property Name="Doc_SellDate" Type="date" />
+          <Property Name="Doc_PaymentDate" Type="date" />
+          <Property Name="Doc_InsertedBy" Type="int" Nullable="false" />
+          <Property Name="Doc_InsertDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS\BAZADOK.MDF.dbo.ProcessStates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ProcessStates">
-          <Key>
-            <PropertyRef Name="PSS_ID" />
-          </Key>
-          <Property Name="PSS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PSS_Name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="PSS_InsertDate" Type="datetime" Nullable="false" />
-          <Property Name="PSS_InsertedBy" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS\BAZADOK.MDF.dbo.Tasks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Tasks">
           <Key>
             <PropertyRef Name="Tsk_ID" />
           </Key>
           <Property Name="Tsk_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tsk_DocID" Type="int" Nullable="false" />
-          <Property Name="Tsk_PSSID" Type="int" Nullable="false" />
+          <Property Name="Tsk_UsrID" Type="int" Nullable="false" />
           <Property Name="Tsk_InsertDate" Type="datetime" Nullable="false" />
           <Property Name="Tsk_UpdateDate" Type="datetime" Nullable="false" />
           <Property Name="Tsk_InsertedBy" Type="int" Nullable="false" />
           <Property Name="Tsk_Updatedby" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS\BAZADOK.MDF.dbo.Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Usr_ID" />
@@ -74,51 +57,61 @@ warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS
           <Property Name="Usr_Email" Type="varchar" MaxLength="50" />
           <Property Name="Usr_InsertDate" Type="datetime" Nullable="false" />
           <Property Name="Usr_InsertedBy" Type="int" Nullable="false" />
+          <Property Name="Usr_isAdmin" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Documents_ToCustomers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Cst_ID" />
+            </Principal>
+            <Dependent Role="Documents">
+              <PropertyRef Name="Doc_CstID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_ToDocuments">
+          <End Role="Documents" Type="Self.Documents" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documents">
+              <PropertyRef Name="Doc_ID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="Tsk_DocID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_ToUsers">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Usr_ID" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="Tsk_UsrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="WorkflowModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Customers" EntityType="Self.Customers" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Customers].[Cst_ID] AS [Cst_ID], 
-    [Customers].[Cst_Name] AS [Cst_Name], 
-    [Customers].[Cst_TaxID] AS [Cst_TaxID], 
-    [Customers].[Cst_StreetName] AS [Cst_StreetName], 
-    [Customers].[Cst_StreetNumber] AS [Cst_StreetNumber], 
-    [Customers].[Cst_InsertDate] AS [Cst_InsertDate], 
-    [Customers].[Cst_InsertedBy] AS [Cst_InsertedBy]
-    FROM [dbo].[Customers] AS [Customers]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="ProcessStates" EntityType="Self.ProcessStates" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ProcessStates].[PSS_ID] AS [PSS_ID], 
-    [ProcessStates].[PSS_Name] AS [PSS_Name], 
-    [ProcessStates].[PSS_InsertDate] AS [PSS_InsertDate], 
-    [ProcessStates].[PSS_InsertedBy] AS [PSS_InsertedBy]
-    FROM [dbo].[ProcessStates] AS [ProcessStates]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Tasks" EntityType="Self.Tasks" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Tasks].[Tsk_ID] AS [Tsk_ID], 
-    [Tasks].[Tsk_DocID] AS [Tsk_DocID], 
-    [Tasks].[Tsk_PSSID] AS [Tsk_PSSID], 
-    [Tasks].[Tsk_InsertDate] AS [Tsk_InsertDate], 
-    [Tasks].[Tsk_UpdateDate] AS [Tsk_UpdateDate], 
-    [Tasks].[Tsk_InsertedBy] AS [Tsk_InsertedBy], 
-    [Tasks].[Tsk_Updatedby] AS [Tsk_Updatedby]
-    FROM [dbo].[Tasks] AS [Tasks]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Users].[Usr_ID] AS [Usr_ID], 
-    [Users].[Usr_Name] AS [Usr_Name], 
-    [Users].[Usr_Surname] AS [Usr_Surname], 
-    [Users].[Usr_Login] AS [Usr_Login], 
-    [Users].[Usr_PWD] AS [Usr_PWD], 
-    [Users].[Usr_Email] AS [Usr_Email], 
-    [Users].[Usr_InsertDate] AS [Usr_InsertDate], 
-    [Users].[Usr_InsertedBy] AS [Usr_InsertedBy]
-    FROM [dbo].[Users] AS [Users]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Documents_ToCustomers" Association="Self.FK_Documents_ToCustomers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Documents" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_ToDocuments" Association="Self.FK_Tasks_ToDocuments">
+            <End Role="Documents" EntitySet="Documents" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_ToUsers" Association="Self.FK_Tasks_ToUsers">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -135,6 +128,7 @@ warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS
           <Property Name="Cst_StreetNumber" Type="Int32" />
           <Property Name="Cst_InsertDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Cst_InsertedBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Documents" Relationship="WorkflowModel.FK_Documents_ToCustomers" FromRole="Customer" ToRole="Document" />
         </EntityType>
         <EntityType Name="Document">
           <Key>
@@ -146,20 +140,13 @@ warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS
           <Property Name="Doc_NetValue" Precision="19" Scale="4" Type="Decimal" />
           <Property Name="Doc_VatValue" Precision="19" Scale="4" Type="Decimal" />
           <Property Name="Doc_GrossValue" Precision="19" Scale="4" Type="Decimal" />
-          <Property Name="Doc_DocumentDate" Precision="3" Type="DateTime" />
-          <Property Name="Doc_SellDate" Precision="3" Type="DateTime" />
-          <Property Name="Doc_PaymentDate" Precision="3" Type="DateTime" />
-          <Property Name="Doc_InsertedBy" Type="Int32" />
-          <Property Name="Doc_InsertDate" Precision="3" Type="DateTime" />
-        </EntityType>
-        <EntityType Name="ProcessState">
-          <Key>
-            <PropertyRef Name="PSS_ID" />
-          </Key>
-          <Property Name="PSS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PSS_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PSS_InsertDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="PSS_InsertedBy" Type="Int32" Nullable="false" />
+          <Property Name="Doc_DocumentDate" Precision="0" Type="DateTime" Nullable="false" />
+          <Property Name="Doc_SellDate" Precision="0" Type="DateTime" />
+          <Property Name="Doc_PaymentDate" Precision="0" Type="DateTime" />
+          <Property Name="Doc_InsertedBy" Type="Int32" Nullable="false" />
+          <Property Name="Doc_InsertDate" Precision="3" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Tasks" Relationship="WorkflowModel.FK_Tasks_ToDocuments" FromRole="Document" ToRole="Task" />
+          <NavigationProperty Name="Customer" Relationship="WorkflowModel.FK_Documents_ToCustomers" FromRole="Document" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -167,11 +154,13 @@ warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS
           </Key>
           <Property Name="Tsk_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tsk_DocID" Type="Int32" Nullable="false" />
-          <Property Name="Tsk_PSSID" Type="Int32" Nullable="false" />
+          <Property Name="Tsk_UsrID" Type="Int32" Nullable="false" />
           <Property Name="Tsk_InsertDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Tsk_UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Tsk_InsertedBy" Type="Int32" Nullable="false" />
           <Property Name="Tsk_Updatedby" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Document" Relationship="WorkflowModel.FK_Tasks_ToDocuments" FromRole="Task" ToRole="Document" />
+          <NavigationProperty Name="User" Relationship="WorkflowModel.FK_Tasks_ToUsers" FromRole="Task" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -185,14 +174,63 @@ warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS
           <Property Name="Usr_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Usr_InsertDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Usr_InsertedBy" Type="Int32" Nullable="false" />
+          <Property Name="Usr_isAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tasks" Relationship="WorkflowModel.FK_Tasks_ToUsers" FromRole="User" ToRole="Task" />
         </EntityType>
         <EntityContainer Name="WorkflowEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Documents" EntityType="Self.Document" />
-          <EntitySet Name="ProcessStates" EntityType="Self.ProcessState" />
           <EntitySet Name="Tasks" EntityType="Self.Task" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Tasks_ToDocuments" Association="WorkflowModel.FK_Tasks_ToDocuments">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_ToUsers" Association="WorkflowModel.FK_Tasks_ToUsers">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documents_ToCustomers" Association="WorkflowModel.FK_Documents_ToCustomers">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Tasks_ToDocuments">
+          <End Type="WorkflowModel.Document" Role="Document" Multiplicity="1" />
+          <End Type="WorkflowModel.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Doc_ID" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="Tsk_DocID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_ToUsers">
+          <End Type="WorkflowModel.User" Role="User" Multiplicity="1" />
+          <End Type="WorkflowModel.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Usr_ID" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="Tsk_UsrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documents_ToCustomers">
+          <End Type="WorkflowModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="WorkflowModel.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Cst_ID" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="Doc_CstID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -229,22 +267,12 @@ warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProcessStates">
-            <EntityTypeMapping TypeName="WorkflowModel.ProcessState">
-              <MappingFragment StoreEntitySet="ProcessStates">
-                <ScalarProperty Name="PSS_ID" ColumnName="PSS_ID" />
-                <ScalarProperty Name="PSS_Name" ColumnName="PSS_Name" />
-                <ScalarProperty Name="PSS_InsertDate" ColumnName="PSS_InsertDate" />
-                <ScalarProperty Name="PSS_InsertedBy" ColumnName="PSS_InsertedBy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="WorkflowModel.Task">
               <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="Tsk_UsrID" ColumnName="Tsk_UsrID" />
                 <ScalarProperty Name="Tsk_ID" ColumnName="Tsk_ID" />
                 <ScalarProperty Name="Tsk_DocID" ColumnName="Tsk_DocID" />
-                <ScalarProperty Name="Tsk_PSSID" ColumnName="Tsk_PSSID" />
                 <ScalarProperty Name="Tsk_InsertDate" ColumnName="Tsk_InsertDate" />
                 <ScalarProperty Name="Tsk_UpdateDate" ColumnName="Tsk_UpdateDate" />
                 <ScalarProperty Name="Tsk_InsertedBy" ColumnName="Tsk_InsertedBy" />
@@ -255,6 +283,7 @@ warning 6002: The table/view 'C:\USERS\PC-DOM\SOURCE\REPOS\JESZCZEROS\JESZCZEROS
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="WorkflowModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Usr_isAdmin" ColumnName="Usr_isAdmin" />
                 <ScalarProperty Name="Usr_ID" ColumnName="Usr_ID" />
                 <ScalarProperty Name="Usr_Name" ColumnName="Usr_Name" />
                 <ScalarProperty Name="Usr_Surname" ColumnName="Usr_Surname" />
