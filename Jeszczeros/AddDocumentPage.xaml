@@ -23,19 +23,18 @@
                                                 HorizontalAlignment="Center" 
                                                 Foreground="White" Margin="747,22,27,394" Height="24" Width="26"/>
         <Button Click="Close_button" Background="Transparent" BorderThickness="0"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="22" Margin="749,22,0,0" Height="24"/>
-        <Label TextBlock.FontWeight="Bold" Content="Numer dokumentu" HorizontalAlignment="Left" Height="28" Margin="24,84,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
-        <TextBox x:Name="NrDok"  HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168" Margin="174,84,0,0" FontSize="14" BorderThickness="0.5"/>
-        <Label TextBlock.FontWeight="Bold" Content="Kontrahent" HorizontalAlignment="Left" Height="28" Margin="24,115,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
-        <Label TextBlock.FontWeight="Bold"  Content="Data dokumentu" HorizontalAlignment="Left" Height="28" Margin="24,146,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
-        <DatePicker x:Name="DataDok" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,146,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5" Background="White" />
-        <Label TextBlock.FontWeight="Bold"  Content="Data sprzedaży" HorizontalAlignment="Left" Height="28" Margin="24,176,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
-        <DatePicker x:Name="DataSprzed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,176,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5" Background="White" />
-        <Label TextBlock.FontWeight="Bold"  Content="Data płatności" Height="28" Margin="24,207,0,0" VerticalAlignment="Top" Width="145" FontSize="14" HorizontalAlignment="Left"/>
-        <DatePicker x:Name="DataPlat" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,207,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5" Background="White" />
-        <ComboBox Name="ComboCST" ItemsSource = "{Binding}" SelectedValuePath="Cst_ID" DisplayMemberPath="Cst_Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Margin="174,115,0,0" Height="28" SelectionChanged="ComboBox_SelectionChanged"/>
-        
-        
-        
+        <Label TextBlock.FontWeight="Bold" Content="Numer dokumentu" HorizontalAlignment="Left" Height="28" Margin="24,84,0,0" VerticalAlignment="Top" Width="161" FontSize="14"/>
+        <TextBox x:Name="NrDok"  HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168" Margin="209,84,0,0" FontSize="14" BorderThickness="0.5"/>
+        <Label TextBlock.FontWeight="Bold" Content="Kontrahent" HorizontalAlignment="Left" Height="28" Margin="24,115,0,0" VerticalAlignment="Top" Width="161" FontSize="14"/>
+        <Label TextBlock.FontWeight="Bold"  Content="Data dokumentu" HorizontalAlignment="Left" Height="28" Margin="24,146,0,0" VerticalAlignment="Top" Width="161" FontSize="14"/>
+        <DatePicker x:Name="DataDok" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,146,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5" Background="White" />
+        <Label TextBlock.FontWeight="Bold"  Content="Data sprzedaży" HorizontalAlignment="Left" Height="28" Margin="24,176,0,0" VerticalAlignment="Top" Width="161" FontSize="14"/>
+        <DatePicker x:Name="DataSprzed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,176,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5" Background="White" />
+        <Label TextBlock.FontWeight="Bold"  Content="Data płatności" Height="28" Margin="24,207,0,0" VerticalAlignment="Top" Width="161" FontSize="14" HorizontalAlignment="Left"/>
+        <DatePicker x:Name="DataPlat" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="209,207,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5" Background="White" />
+        <ComboBox  Name="ComboCST" ItemsSource = "{Binding}" SelectedValuePath="Cst_ID" DisplayMemberPath="Cst_Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Margin="209,115,0,0" Height="28" />
+
+
         <iconPacks:PackIconMaterial Kind="PlusBoxMultiple" 
             VerticalAlignment="Center" 
             HorizontalAlignment="Center" 

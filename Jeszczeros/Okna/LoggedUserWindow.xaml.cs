@@ -23,18 +23,22 @@ namespace ProjektSemestralnyWPF_Workflow
             InitializeComponent();
             WorkflowEntities db = new WorkflowEntities();
 
-                              
+          
+
             var docs = from d in db.Documents
-                       from t in db.Tasks
-                       where d.Doc_ID == t.Tsk_DocID
-                       select new { 
-            t.Tsk_DocID,d.Doc_ID,d.Doc_Name,d.Doc_CstID,d.Doc_DocumentDate
+                       
+                       select new {
+                           ID = d.Doc_ID,
+                           NumerDokumentu = d.Doc_Name,
+                           IDKontrahenta = d.Doc_CstID,
+                           DataDokumentu = d.Doc_DocumentDate
             };
            
 
             gridDocuments.ItemsSource = docs.ToList();
 
         }
+        
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -45,7 +49,7 @@ namespace ProjektSemestralnyWPF_Workflow
         private void Addbtn_click(object sender, RoutedEventArgs e)
         {
 
-
+            
 
             AddDocumentPage oknododawania = new AddDocumentPage();
             oknododawania.Show();
@@ -59,14 +63,13 @@ namespace ProjektSemestralnyWPF_Workflow
         {
             WorkflowEntities db = new WorkflowEntities();
             var querry2 = from d in db.Documents
-                          from t in db.Tasks
+                          
                           select new { 
                           ID = d.Doc_ID,
-                          PosiadaczDokuemntu=t.Tsk_UsrID,
                           NumerDokumentu = d.Doc_Name,
                           IDKontrahenta = d.Doc_CstID,
                           DataSprzedazy = d.Doc_SellDate,
-                          DataDokument = d.Doc_DocumentDate,
+                          DataDokumentu = d.Doc_DocumentDate,
                           DataPlatnosci = d.Doc_PaymentDate};
             
             gridDocuments.ItemsSource = querry2.ToList();

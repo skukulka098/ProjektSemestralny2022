@@ -41,7 +41,9 @@ namespace ProjektSemestralnyWPF_Workflow
             
             var querry1 = from u in db.Users
                           where u.Usr_Login == Login.Text && u.Usr_PWD == txt_pass.Password
-                          select u;
+                          select u.Usr_ID;
+
+           
 
             if (querry1.Count() >= 1)
             {
