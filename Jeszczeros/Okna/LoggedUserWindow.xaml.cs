@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
-namespace Jeszczeros
+namespace ProjektSemestralnyWPF_Workflow
 {
    
     public partial class LoggedUserWindow : Window

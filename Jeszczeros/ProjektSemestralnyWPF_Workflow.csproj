@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AD01981B-76DE-48EF-A33B-7F3DE0C3A7B4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Jeszczeros</RootNamespace>
-    <AssemblyName>Jeszczeros</AssemblyName>
+    <RootNamespace>ProjektSemestralnyWPF_Workflow</RootNamespace>
+    <AssemblyName>ProjektSemestralnyWPF_Workflow</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -113,7 +113,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelWorkflow.edmx</DependentUpon>
     </Compile>
-    <Compile Include="RegisterPage.xaml.cs">
+    <Compile Include="Okna\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Task.cs">
@@ -122,10 +122,10 @@
     <Compile Include="User.cs">
       <DependentUpon>ModelWorkflow.tt</DependentUpon>
     </Compile>
-    <Compile Include="LoggedUserWindow.xaml.cs">
+    <Compile Include="Okna\LoggedUserWindow.xaml.cs">
       <DependentUpon>LoggedUserWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="LoginPage.xaml">
+    <Page Include="Okna\LoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -136,15 +136,15 @@
     <Compile Include="Document.cs">
       <DependentUpon>ModelWorkflow.tt</DependentUpon>
     </Compile>
-    <Compile Include="LoginPage.xaml.cs">
+    <Compile Include="Okna\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="LoggedUserWindow.xaml">
+    <Page Include="Okna\LoggedUserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegisterPage.xaml">
+    <Page Include="Okna\RegisterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Jeszczeros
+namespace ProjektSemestralnyWPF_Workflow
 {
     using System;
     using System.Data.Entity;

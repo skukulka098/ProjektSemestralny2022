@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Jeszczeros
+namespace ProjektSemestralnyWPF_Workflow
 {
     /// <summary>
     /// Logika interakcji dla klasy App.xaml
