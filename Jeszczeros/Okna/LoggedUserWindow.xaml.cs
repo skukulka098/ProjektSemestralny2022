@@ -45,24 +45,14 @@ namespace ProjektSemestralnyWPF_Workflow
         private void Addbtn_click(object sender, RoutedEventArgs e)
         {
 
-            WorkflowEntities db = new WorkflowEntities();
 
-            Document documentObject = new Document()
-            {
-                Doc_Name = NrDok.Text,
-                Doc_NetValue = 32,
-                Doc_GrossValue=53,
-                Doc_VatValue=21,
-                Doc_SellDate= DataSprzed.SelectedDate,
-                Doc_PaymentDate= DataPlat.SelectedDate,
-                Doc_InsertedBy=1,
-                Doc_InsertDate= DateTime.Now,
-                Doc_CstID = Convert.ToInt32(CstText.Text),
-                Doc_DocumentDate = (DateTime)DataDok.SelectedDate
-            };
 
-            db.Documents.Add(documentObject);
-            db.SaveChanges();
+            AddDocumentPage oknododawania = new AddDocumentPage();
+            oknododawania.Show();
+
+        
+
+           
 
         }
         private void Loadbtn_click(object sender, RoutedEventArgs e)

@@ -43,7 +43,7 @@ namespace ProjektSemestralnyWPF_Workflow
                           where u.Usr_Login == Login.Text && u.Usr_PWD == txt_pass.Password
                           select u;
 
-            if (querry1.Count() == 1)
+            if (querry1.Count() >= 1)
             {
                 MessageBox.Show("Zalogowano");
                 LoggedUserWindow zalogowanyokno = new LoggedUserWindow();
@@ -66,7 +66,6 @@ namespace ProjektSemestralnyWPF_Workflow
         private void Reje_click(object sender,RoutedEventArgs e)
         {
             RegisterPage rejestracjaokno = new RegisterPage();
-            //this.Visibility = Visibility.Hidden;
             rejestracjaokno.Show();
         }
        

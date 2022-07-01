@@ -1,0 +1,47 @@
+﻿<Window x:Class="ProjektSemestralnyWPF_Workflow.AddDocumentPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjektSemestralnyWPF_Workflow" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="AddDocumentPage" Height="450" Width="800"        AllowsTransparency="True" Background="Transparent"
+        WindowStyle="None" ResizeMode="NoResize"
+        MouseDown="Window_MouseDown">
+    <Grid Margin="0,0,0,10">
+        <Border CornerRadius="20" >
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#b6452f" Offset="0.0"/>
+                    <GradientStop Color="#c7ff57" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <iconPacks:PackIconMaterial Kind="CloseBox" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White" Margin="747,22,27,394" Height="24" Width="26"/>
+        <Button Click="Close_button" Background="Transparent" BorderThickness="0"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="22" Margin="749,22,0,0" Height="24"/>
+        <Label TextBlock.FontWeight="Bold" Content="Numer dokumentu" HorizontalAlignment="Left" Height="28" Margin="24,84,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
+        <TextBox x:Name="NrDok"  HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168" Margin="174,84,0,0" FontSize="14" BorderThickness="0.5"/>
+        <Label TextBlock.FontWeight="Bold" Content="Kontrahent" HorizontalAlignment="Left" Height="28" Margin="24,115,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
+        <Label TextBlock.FontWeight="Bold"  Content="Data dokumentu" HorizontalAlignment="Left" Height="28" Margin="24,146,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
+        <DatePicker x:Name="DataDok" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,146,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5" Background="White" />
+        <Label TextBlock.FontWeight="Bold"  Content="Data sprzedaży" HorizontalAlignment="Left" Height="28" Margin="24,176,0,0" VerticalAlignment="Top" Width="145" FontSize="14"/>
+        <DatePicker x:Name="DataSprzed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,176,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5" Background="White" />
+        <Label TextBlock.FontWeight="Bold"  Content="Data płatności" Height="28" Margin="24,207,0,0" VerticalAlignment="Top" Width="145" FontSize="14" HorizontalAlignment="Left"/>
+        <DatePicker x:Name="DataPlat" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="174,207,0,0" Height="26" Width="168" FontSize="14" BorderThickness="0.5" Background="White" />
+        <ComboBox Name="ComboCST" ItemsSource = "{Binding}" SelectedValuePath="Cst_ID" DisplayMemberPath="Cst_Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="168" Margin="174,115,0,0" Height="28" SelectionChanged="ComboBox_SelectionChanged"/>
+        
+        
+        
+        <iconPacks:PackIconMaterial Kind="PlusBoxMultiple" 
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center" 
+            Foreground="White" Margin="61,18,694,388" Height="34" Width="45" RenderTransformOrigin="0.269,-4.521"/>
+        <Button Background="Transparent" BorderThickness="0" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Addbtn"  Width="34" Margin="67,17,0,0" Click="AddDoc_Button" Height="36" RenderTransformOrigin="0.467,0.333" Opacity="0.75" FontWeight="Bold"  Foreground="Snow"/>
+        <Label  HorizontalContentAlignment="Center" TextBlock.FontWeight="Bold" Content="Dodaj Dokument" HorizontalAlignment="Left" Height="25" Margin="34,53,0,0" VerticalAlignment="Top" Width="104" FontSize="10" Background="#00000000" Foreground="#FFFBFBFB"/>
+
+    </Grid>
+</Window>
