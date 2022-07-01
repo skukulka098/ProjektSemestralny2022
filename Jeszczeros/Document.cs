@@ -23,9 +23,6 @@ namespace ProjektSemestralnyWPF_Workflow
         public int Doc_ID { get; set; }
         public string Doc_Name { get; set; }
         public Nullable<int> Doc_CstID { get; set; }
-        public Nullable<decimal> Doc_NetValue { get; set; }
-        public Nullable<decimal> Doc_VatValue { get; set; }
-        public Nullable<decimal> Doc_GrossValue { get; set; }
         public System.DateTime Doc_DocumentDate { get; set; }
         public Nullable<System.DateTime> Doc_SellDate { get; set; }
         public Nullable<System.DateTime> Doc_PaymentDate { get; set; }

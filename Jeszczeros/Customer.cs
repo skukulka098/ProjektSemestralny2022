@@ -22,7 +22,6 @@ namespace ProjektSemestralnyWPF_Workflow
     
         public int Cst_ID { get; set; }
         public string Cst_Name { get; set; }
-        public string Cst_TaxID { get; set; }
         public string Cst_StreetName { get; set; }
         public Nullable<int> Cst_StreetNumber { get; set; }
         public System.DateTime Cst_InsertDate { get; set; }

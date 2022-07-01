@@ -11,7 +11,6 @@
           </Key>
           <Property Name="Cst_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cst_Name" Type="varchar(max)" />
-          <Property Name="Cst_TaxID" Type="varchar" MaxLength="50" />
           <Property Name="Cst_StreetName" Type="varchar" MaxLength="50" />
           <Property Name="Cst_StreetNumber" Type="int" />
           <Property Name="Cst_InsertDate" Type="datetime" Nullable="false" />
@@ -24,9 +23,6 @@
           <Property Name="Doc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Doc_Name" Type="varchar" MaxLength="100" />
           <Property Name="Doc_CstID" Type="int" />
-          <Property Name="Doc_NetValue" Type="money" />
-          <Property Name="Doc_VatValue" Type="money" />
-          <Property Name="Doc_GrossValue" Type="money" />
           <Property Name="Doc_DocumentDate" Type="date" Nullable="false" />
           <Property Name="Doc_SellDate" Type="date" />
           <Property Name="Doc_PaymentDate" Type="date" />
@@ -123,7 +119,6 @@
           </Key>
           <Property Name="Cst_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Cst_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Cst_TaxID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Cst_StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Cst_StreetNumber" Type="Int32" />
           <Property Name="Cst_InsertDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -137,9 +132,6 @@
           <Property Name="Doc_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="Doc_Name" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
           <Property Name="Doc_CstID" Type="Int32" />
-          <Property Name="Doc_NetValue" Precision="19" Scale="4" Type="Decimal" />
-          <Property Name="Doc_VatValue" Precision="19" Scale="4" Type="Decimal" />
-          <Property Name="Doc_GrossValue" Precision="19" Scale="4" Type="Decimal" />
           <Property Name="Doc_DocumentDate" Precision="0" Type="DateTime" Nullable="false" />
           <Property Name="Doc_SellDate" Precision="0" Type="DateTime" />
           <Property Name="Doc_PaymentDate" Precision="0" Type="DateTime" />
@@ -242,7 +234,6 @@
               <MappingFragment StoreEntitySet="Customers">
                 <ScalarProperty Name="Cst_ID" ColumnName="Cst_ID" />
                 <ScalarProperty Name="Cst_Name" ColumnName="Cst_Name" />
-                <ScalarProperty Name="Cst_TaxID" ColumnName="Cst_TaxID" />
                 <ScalarProperty Name="Cst_StreetName" ColumnName="Cst_StreetName" />
                 <ScalarProperty Name="Cst_StreetNumber" ColumnName="Cst_StreetNumber" />
                 <ScalarProperty Name="Cst_InsertDate" ColumnName="Cst_InsertDate" />
@@ -256,9 +247,6 @@
                 <ScalarProperty Name="Doc_ID" ColumnName="Doc_ID" />
                 <ScalarProperty Name="Doc_Name" ColumnName="Doc_Name" />
                 <ScalarProperty Name="Doc_CstID" ColumnName="Doc_CstID" />
-                <ScalarProperty Name="Doc_NetValue" ColumnName="Doc_NetValue" />
-                <ScalarProperty Name="Doc_VatValue" ColumnName="Doc_VatValue" />
-                <ScalarProperty Name="Doc_GrossValue" ColumnName="Doc_GrossValue" />
                 <ScalarProperty Name="Doc_DocumentDate" ColumnName="Doc_DocumentDate" />
                 <ScalarProperty Name="Doc_SellDate" ColumnName="Doc_SellDate" />
                 <ScalarProperty Name="Doc_PaymentDate" ColumnName="Doc_PaymentDate" />

@@ -58,9 +58,18 @@ namespace ProjektSemestralnyWPF_Workflow
         private void Loadbtn_click(object sender, RoutedEventArgs e)
         {
             WorkflowEntities db = new WorkflowEntities();
-
+            var querry2 = from d in db.Documents
+                          from t in db.Tasks
+                          select new { 
+                          ID = d.Doc_ID,
+                          PosiadaczDokuemntu=t.Tsk_UsrID,
+                          NumerDokumentu = d.Doc_Name,
+                          IDKontrahenta = d.Doc_CstID,
+                          DataSprzedazy = d.Doc_SellDate,
+                          DataDokument = d.Doc_DocumentDate,
+                          DataPlatnosci = d.Doc_PaymentDate};
             
-            gridDocuments.ItemsSource = db.Documents.ToList();
+            gridDocuments.ItemsSource = querry2.ToList();
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -74,9 +83,6 @@ namespace ProjektSemestralnyWPF_Workflow
             Application.Current.Shutdown();
         }
 
-        private void gridDocuments_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+     
     }
 }

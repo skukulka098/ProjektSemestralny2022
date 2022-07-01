@@ -51,7 +51,7 @@ namespace ProjektSemestralnyWPF_Workflow
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = ComboCST.SelectedItem as Customer;
-            MessageBox.Show(item.Cst_ID.ToString());
+            //MessageBox.Show(item.Cst_ID.ToString());
         }
 
   
@@ -60,19 +60,17 @@ namespace ProjektSemestralnyWPF_Workflow
         {
             WorkflowEntities db = new WorkflowEntities();
             var item = ComboCST.SelectedItem as Customer;
+           
 
             Document documentObject = new Document()
             {
                 Doc_Name = NrDok.Text,
-                Doc_NetValue = 32,
-                Doc_GrossValue = 53,
-                Doc_VatValue = 21,
                 Doc_SellDate = DataSprzed.SelectedDate,
                 Doc_PaymentDate = DataPlat.SelectedDate,
+                Doc_CstID = item.Cst_ID,
+                Doc_DocumentDate = (DateTime)DataDok.SelectedDate,
                 Doc_InsertedBy = 1,
-                Doc_InsertDate = DateTime.Now,
-                Doc_CstID = Convert.ToInt32(item),
-                Doc_DocumentDate = (DateTime)DataDok.SelectedDate
+                Doc_InsertDate = DateTime.Now
             };
 
             db.Documents.Add(documentObject);
